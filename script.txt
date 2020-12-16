@@ -1,0 +1,56 @@
+// SCRIPT NÀY KHÔNG XỬ LÝ HÌNH ẢNH
+// LÀM BỞI LONG (gn01n4rt)
+// VÔ MỘT QUIZ COURSERA BẤT KỲ VÀ VÀO LÀM QUIZ
+// CLICK CHUỘT PHẢI CHỌN INSPECT HOẶC TỔ HỢP CTRL + SHIFT + I
+// CÓ 1 BẢNG SẼ HIỆN LÊN TÌM CÁI MỤC CONSOLE (THƯỜNG NẰM Ở GÓC TRÊN)
+// QUA RỒI THÌ BẤM TỔ HỢP CTRL + L CHO ĐỠ RỐI MẮT
+// CHỖ CÓ CÁI > BẤM VÔ ĐÓ RỒI COPY ĐOẠN DƯỚI VÀO
+// DÀNH CHO AI ĐỌC CODE VÀ SỬA CODE THÌ XIN LỖI VÌ ĐẶT TÊN BIẾN NGU :)) AI NGỜ NÓ DÀI VẬY LÀM CHO VUI THÔI
+
+
+let count = 1;
+let s = "";
+for (let i of document.getElementsByClassName("rc-FormPartsQuestion__row")) {
+  if (i.id === "") {
+    var CA = i.querySelector(".rc-FormPartCA");
+    if (CA.querySelector(".rc-TextInputBox") !== null) {
+      s +=
+        "\t========================================================\n" +
+        "\t===     THIS PART IS INPUT, NOT A CHOICE QUESTION   ====\n" +
+        "\t========================================================\n";
+    } else {
+      let options = 1;
+      for (let j of CA.querySelectorAll(".rc-CML")) {
+        let k = j.querySelector(".rc-CodeBlock");
+        if (k !== null) {
+          s += "\t" + options + ".";
+          for (let l of k.querySelectorAll(".ace_line_group")) {
+            s += "\t" + l.textContent + "\n";
+          }
+          options++;
+        } else {
+          s += "\t" + options + "." + j.textContent + "\n";
+          options++;
+        }
+      }
+    }
+  } else {
+    let j = i.querySelector(".rc-CML");
+    if (j.querySelector(".rc-CodeBlock")) {
+      s += count + ".";
+      for (let k of j.querySelectorAll("p, .ace_line_group")) {
+        s += k.textContent + "\n";
+      }
+    } else {
+      s += count + "." + i.querySelector(".rc-CML").textContent + "\n";
+    }
+    count++;
+  }
+}
+console.log(s);
+var copyPath = document.createElement("textarea");
+document.body.appendChild(copyPath);
+copyPath.value = s;
+copyPath.select();
+document.execCommand("copy");
+document.body.removeChild(copyPath);
