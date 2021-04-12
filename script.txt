@@ -1,15 +1,20 @@
-// SCRIPT NÀY KHÔNG XỬ LÝ HÌNH ẢNH
-// LÀM BỞI LONG (gn01n4rt)
-// VÔ MỘT QUIZ COURSERA BẤT KỲ VÀ VÀO LÀM QUIZ
-// CLICK CHUỘT PHẢI CHỌN INSPECT HOẶC TỔ HỢP CTRL + SHIFT + I
-// CÓ 1 BẢNG SẼ HIỆN LÊN TÌM CÁI MỤC CONSOLE (THƯỜNG NẰM Ở GÓC TRÊN)
-// QUA RỒI THÌ BẤM TỔ HỢP CTRL + L CHO ĐỠ RỐI MẮT
-// CHỖ CÓ CÁI > BẤM VÔ ĐÓ RỒI COPY ĐOẠN DƯỚI VÀO
-// DÀNH CHO AI ĐỌC CODE VÀ SỬA CODE THÌ XIN LỖI VÌ ĐẶT TÊN BIẾN NGU :)) AI NGỜ NÓ DÀI VẬY LÀM CHO VUI THÔI
-
-
 let count = 1;
 let s = "";
+const countNum = {
+  1: "A",
+  2: "B",
+  3: "C",
+  4: "D",
+  5: "E",
+  6: "F",
+  7: "G",
+  8: "H",
+  9: "I",
+  10: "J",
+  11: "K",
+  12: "L",
+  13: "M"
+};
 for (let i of document.getElementsByClassName("rc-FormPartsQuestion__row")) {
   if (i.id === "") {
     var CA = i.querySelector(".rc-FormPartCA");
@@ -29,7 +34,7 @@ for (let i of document.getElementsByClassName("rc-FormPartsQuestion__row")) {
           }
           options++;
         } else {
-          s += "\t" + options + "." + j.textContent + "\n";
+          s += countNum[options] + ". " + j.textContent + "\n";
           options++;
         }
       }
@@ -42,7 +47,7 @@ for (let i of document.getElementsByClassName("rc-FormPartsQuestion__row")) {
         s += k.textContent + "\n";
       }
     } else {
-      s += count + "." + i.querySelector(".rc-CML").textContent + "\n";
+      s += "\n" + count + "." + i.querySelector(".rc-CML").textContent + "\n";
     }
     count++;
   }
